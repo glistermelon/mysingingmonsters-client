@@ -18,8 +18,6 @@ import org.slf4j.LoggerFactory;
 
 public class BoxActivateMonsterHandler extends CorrelatedResultResponseHandler<Void, BoxActivateMonsterResponse, Void> {
 
-    private static final Logger logger = LoggerFactory.getLogger(BoxActivateMonsterHandler.class);
-
     public BoxActivateMonsterHandler(EventHandlerInitArg arg) {
         super(arg, BoxActivateMonsterResponse.class);
     }

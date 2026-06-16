@@ -16,7 +16,7 @@ import java.util.Comparator;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.*;
 
-// 5 June 2026, 4:42 AM CST - all tests passing
+// 16 July 2026, 4:29 AM CST - all tests passing
 
 @ExtendWith(FailOnceExtension.class)
 public class ObstacleTests extends ClientBoundTests {

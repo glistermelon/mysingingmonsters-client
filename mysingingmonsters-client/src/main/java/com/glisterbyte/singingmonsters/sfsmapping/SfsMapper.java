@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.glisterbyte.singingmonsters.common.StringUtil;
 import com.glisterbyte.singingmonsters.sfsmapping.exceptions.*;
+import com.glisterbyte.singingmonsters.sfsmodels.BlankJsonList;
 import com.glisterbyte.singingmonsters.sfsmodels.SfsCorrelatedResultResponse;
 import com.glisterbyte.singingmonsters.sfsmodels.SfsModel;
 import com.glisterbyte.singingmonsters.sfsmodels.SfsResultResponse;
@@ -167,7 +168,9 @@ public class SfsMapper {
 
         T mappedObj;
         try {
-            mappedObj = tClass.getDeclaredConstructor().newInstance();
+            var constructor = tClass.getDeclaredConstructor();
+            constructor.setAccessible(true);
+            mappedObj = constructor.newInstance();
         }
         catch (
                 NoSuchMethodException
@@ -178,19 +181,19 @@ public class SfsMapper {
             throw new MapFromSfsException("Failed to instantiate mapped object", ex);
         }
 
-
         // For failed requests, anything that can be mapped will be, but the rest will be ignored without throwing
         boolean allFieldsOptional = false;
-        if (mappedObj instanceof SfsResultResponse || mappedObj instanceof SfsCorrelatedResultResponse) {
+        if (mappedObj instanceof SfsResultResponse) {
             Boolean success = sfsObject.getBool("success");
             if (success == null) throw new MissingKeyException("success", boolean.class, sfsObject);
             allFieldsOptional = !success;
         }
 
-
         try {
 
             for (Field field : getFields(tClass)) {
+
+                field.setAccessible(true);
 
                 if (field.isAnnotationPresent(SfsMapperIgnore.class)) continue;
 
@@ -244,6 +247,7 @@ public class SfsMapper {
                     if (!(sourceObject instanceof ISFSArray sfsArray)) {
                         throw new MissingKeyException(key, ISFSArray.class, sfsObject);
                     }
+
                     SFSObject mappedSfsObject = new SFSObject();
                     for (SFSDataWrapper elementWrapper : sfsArray) {
                         Object element = elementWrapper.getObject();
@@ -256,7 +260,17 @@ public class SfsMapper {
                         var entry = elementSfsObject.iterator().next();
                         mappedSfsObject.put(entry.getKey(), entry.getValue());
                     }
-                    field.set(mappedObj, mapSFSObjectToClass(fieldType, mappedSfsObject));
+
+                    if (
+                            field.isAnnotationPresent(SfsOptional.class)
+                            && getFields(fieldType).stream()
+                                    .map(SfsMapper::getFieldKey).noneMatch(mappedSfsObject::containsKey)
+                    ) {
+                        field.set(mappedObj, null);
+                    }
+                    else {
+                        field.set(mappedObj, mapSFSObjectToClass(fieldType, mappedSfsObject));
+                    }
 
                 }
                 else if (field.isAnnotationPresent(SfsJsonArray.class)) {
@@ -264,12 +278,19 @@ public class SfsMapper {
                     if (!(sourceObject instanceof String jsonStr)) {
                         throw new MissingKeyException(key, String.class, sfsObject);
                     }
+
+                    if (jsonStr.isBlank()) {
+                        field.set(mappedObj, new BlankJsonList<>());
+                        continue;
+                    }
+
                     if (listElementType == null) {
                         throw new MapFromSfsException(StringUtil.format(
                                 "Field {}::{} needs to be annotated with SfsArrayElementType",
                                 tClass.getName(), fieldType.getName()
                         ));
                     }
+
                     ObjectMapper mapper = new ObjectMapper();
                     var listType = mapper.getTypeFactory().constructCollectionType(List.class, listElementType);
                     try {
@@ -323,6 +344,7 @@ public class SfsMapper {
 
             try {
 
+                field.setAccessible(true);
                 Object value = field.get(obj);
                 if (value == null) continue;
 

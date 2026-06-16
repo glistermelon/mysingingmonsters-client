@@ -26,6 +26,8 @@ import java.util.Comparator;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.*;
 
+// 16 July 2026, 4:22 AM CST - all tests passing
+
 @ExtendWith(FailOnceExtension.class)
 public class WublinMonsterTests extends ClientBoundTests {
 
@@ -42,12 +44,8 @@ public class WublinMonsterTests extends ClientBoundTests {
         island = client.getIsland(IslandType.WUBLIN_ISLAND);
         catalog = client.getMonsterCatalog();
 
-//        activeMonster = (EggBoxMonster)island.getMonsters().stream()
-//                .filter(Monster::isActivated).findFirst().orElse(null);
-
     }
 
-    // 5 July 2026, 4:43 AM CST - passed
     @Test
     @DisplayName("Buy and sell wublin statue")
     public void buyAndSellWublinStatue() throws ClientException, InterruptedException {
@@ -81,7 +79,6 @@ public class WublinMonsterTests extends ClientBoundTests {
 
     }
 
-    // 5 July 2026, 4:43 AM CST - passed
     @Test
     @DisplayName("Get required eggs")
     public void getRequiredEggs() throws ClientException, InterruptedException {
@@ -145,7 +142,6 @@ public class WublinMonsterTests extends ClientBoundTests {
 
     }
 
-    // 5 July 2026, 4:43 AM CST - passed
     @Test
     @DisplayName("Collect from active wublin")
     public void collectFromActiveWublin() throws ClientException, InterruptedException {

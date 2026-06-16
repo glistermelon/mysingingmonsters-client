@@ -4,13 +4,13 @@ import com.glisterbyte.singingmonsters.main.catalog.MonsterSpecies;
 import com.glisterbyte.singingmonsters.main.catalog.MultiMonsterSpecies;
 import com.glisterbyte.singingmonsters.main.common.Timer;
 import com.glisterbyte.singingmonsters.main.catalog.Catalog;
+import com.glisterbyte.singingmonsters.sfsmodels.BlankJsonList;
 import com.glisterbyte.singingmonsters.sfsmodels.data.SfsMonster;
 
+import javax.annotation.Nullable;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class EggBoxMonsterData {
 
@@ -63,9 +63,9 @@ public final class EggBoxMonsterData {
 
     }
 
-    private Map<MultiMonsterSpecies, Integer> computeEggCountMap(List<Integer> zappedEggList) {
+    private Map<MultiMonsterSpecies, Integer> computeEggCountMap(@Nullable List<Integer> zappedEggList) {
         Map<MultiMonsterSpecies, Integer> map = new HashMap<>();
-        for (int speciesId : zappedEggList) {
+        for (int speciesId : Optional.ofNullable(zappedEggList).orElse(List.of())) {
             MonsterSpecies species = catalog.getMonsterSpecies(speciesId);
             MultiMonsterSpecies multiSpecies = MultiMonsterSpecies.fromSpecies(species);
             map.compute(multiSpecies, (x, n) -> n == null ? 1 : (n + 1));
@@ -104,7 +104,12 @@ public final class EggBoxMonsterData {
 
     public synchronized void updateZappedEggs(List<Integer> zappedEggList) {
         zappedEggs.clear();
-        updateZappedEggs(computeEggCountMap(zappedEggList));
+        if (zappedEggList instanceof BlankJsonList) {
+            updateZappedEggs(getRequiredEggCounterMap());
+        }
+        else {
+            updateZappedEggs(computeEggCountMap(zappedEggList));
+        }
     }
 
     public synchronized void setNextCollectionTime(Instant newNextCollectionTime) {

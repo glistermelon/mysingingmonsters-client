@@ -38,7 +38,7 @@ public class FeedMonsterHandler extends UncorrelatedResultResponseHandler<Long, 
 
         Request request = new Request(client);
         var updateFuture = request.expectResponse(handlerManager.getUpdateMonsterHandler(), userMonsterId);
-        request.expectResponse(this)
+        request.expectResponse(this, userMonsterId)
                 .whenComplete((x, ex) -> {
                     if (ex != null) updateFuture.completeExceptionally(ex);
                 });

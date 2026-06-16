@@ -42,14 +42,53 @@ public class Request {
     }
 
     public <RequestData, EventT extends SfsEventModel, HandledT> CompletableFuture<HandledEvent<RequestData, EventT, HandledT>> expectResponse(
-            UncorrelatedEventHandler<RequestData, EventT, HandledT> handler
+            UncorrelatedEventHandler<RequestData, EventT, HandledT> handler,
+            @Nullable RequestData requestData
     ) {
         CompletableFuture<Void> spark = new CompletableFuture<>();
         CompletableFuture<Void> lockWaiter = new CompletableFuture<>();
         expectedResponses.add(new ExpectedResponsePair(handler, spark, lockWaiter));
         AtomicReference<CompletableFuture<HandledEvent<RequestData, EventT, HandledT>>> waiterRef = new AtomicReference<>();
         var future = spark.thenCompose(x -> {
-            var waiter = handler.waitForEventAsync();
+            var waiter = handler.waitForEventAsync(requestData);
+            waiterRef.set(waiter);
+            lockWaiter.complete(null);
+            return waiter;
+        });
+        future.whenComplete((val, ex) -> {
+            var waiter = waiterRef.get();
+            if (waiter == null) {
+                if (ex != null) lockWaiter.completeExceptionally(ex);
+                else lockWaiter.complete(null);
+            }
+            else {
+                if (ex != null) waiter.completeExceptionally(ex);
+                else waiter.complete(val);
+            }
+        });
+        futures.add(future);
+        return future;
+    }
+
+    public <RequestData, EventT extends SfsEventModel, HandledT> CompletableFuture<HandledEvent<RequestData, EventT, HandledT>> expectResponse(
+            UncorrelatedEventHandler<RequestData, EventT, HandledT> handler
+    ) {
+        return expectResponse(handler, null);
+    }
+
+    public <RequestData, EventT extends SfsEventModel & SfsCorrelatedEventModel, HandledT>
+        CompletableFuture<HandledEvent<RequestData, EventT, HandledT>> expectResponse(
+            CorrelatedEventHandler<RequestData, EventT, HandledT> handler,
+            long correlationId,
+            @Nullable RequestData requestData
+        )
+    {
+        CompletableFuture<Void> spark = new CompletableFuture<>();
+        CompletableFuture<Void> lockWaiter = new CompletableFuture<>();
+        expectedResponses.add(new ExpectedResponsePair(handler, spark, lockWaiter));
+        AtomicReference<CompletableFuture<HandledEvent<RequestData, EventT, HandledT>>> waiterRef = new AtomicReference<>();
+        var future = spark.thenCompose(x -> {
+            var waiter = handler.waitForEventAsync(correlationId, requestData);
             waiterRef.set(waiter);
             lockWaiter.complete(null);
             return waiter;
@@ -70,33 +109,11 @@ public class Request {
     }
 
     public <RequestData, EventT extends SfsEventModel & SfsCorrelatedEventModel, HandledT>
-        CompletableFuture<HandledEvent<RequestData, EventT, HandledT>> expectResponse(
-            CorrelatedEventHandler<RequestData, EventT, HandledT> handler, long correlationId
-        )
-    {
-        CompletableFuture<Void> spark = new CompletableFuture<>();
-        CompletableFuture<Void> lockWaiter = new CompletableFuture<>();
-        expectedResponses.add(new ExpectedResponsePair(handler, spark, lockWaiter));
-        AtomicReference<CompletableFuture<HandledEvent<RequestData, EventT, HandledT>>> waiterRef = new AtomicReference<>();
-        var future = spark.thenCompose(x -> {
-            var waiter = handler.waitForEventAsync(correlationId);
-            waiterRef.set(waiter);
-            lockWaiter.complete(null);
-            return waiter;
-        });
-        future.whenComplete((val, ex) -> {
-            var waiter = waiterRef.get();
-            if (waiter == null) {
-                if (ex != null) lockWaiter.completeExceptionally(ex);
-                else lockWaiter.complete(null);
-            }
-            else {
-                if (ex != null) waiter.completeExceptionally(ex);
-                else waiter.complete(val);
-            }
-        });
-        futures.add(future);
-        return future;
+    CompletableFuture<HandledEvent<RequestData, EventT, HandledT>> expectResponse(
+            CorrelatedEventHandler<RequestData, EventT, HandledT> handler,
+            long correlationId
+    ) {
+        return expectResponse(handler, correlationId, null);
     }
 
     public void run(SfsRequestModel request, @Nullable Island island) throws InterruptedException, ClientException {

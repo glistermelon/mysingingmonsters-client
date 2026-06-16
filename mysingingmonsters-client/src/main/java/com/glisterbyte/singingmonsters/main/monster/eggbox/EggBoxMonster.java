@@ -51,7 +51,6 @@ public class EggBoxMonster extends Monster implements ReadableEggBoxMonster, Con
             synchronized (EggBoxMonster.this) {
                 EggBoxMonster.super.getEventHandler().handleActivateEvent(event);
                 data.removeFillTimer();
-                data.updateZappedEggs(data.getRequiredEggCounterMap());
             }
         }
 
