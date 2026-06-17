@@ -91,7 +91,7 @@ public class Document {
 
     private String title;
 
-    private SectionTree sectionTree = new SectionTree();
+    private final SectionTree sectionTree = new SectionTree();
 
     public Document(DocumentMaster master, String category, String fileName) {
         this.master = master;
@@ -139,13 +139,6 @@ public class Document {
     }
 
     public void add(String line) {
-
-        Pattern pattern = Pattern.compile("<@([a-zA-Z0-9]+)>");
-        Matcher matcher = pattern.matcher(line);
-        while (matcher.find()) {
-            String className = matcher.group(1);
-        }
-
         sectionTree.addContent(line);
     }
 
@@ -159,20 +152,21 @@ public class Document {
 
     private String formatClassSubstitutions(String string) {
 
-        Pattern pattern = Pattern.compile("<@([a-zA-Z0-9]+)>");
+        Pattern pattern = Pattern.compile("\\b\\w+\\b");
         Matcher matcher = pattern.matcher(string);
 
         StringBuilder formatted = new StringBuilder();
 
         while (matcher.find()) {
-            String simpleName = matcher.group(1);
-            Class<? extends SfsModel> targetClass = master.getClassForSimpleName(simpleName);
-            if (targetClass == null) throw new RuntimeException("Didn't match " + simpleName);
+            String word = matcher.group();
+            Class<? extends SfsModel> targetClass = master.getClassForSimpleName(word);
+            if (targetClass == null) continue;
             Document targetDoc = master.getDocument(targetClass);
-            if (targetDoc == null) throw new RuntimeException("No doc for " + targetClass);
+            if (targetDoc == null) continue;
             String replacement = format("[{}](/{})", targetDoc.getTitle(), targetDoc.getRelativePath());
             matcher.appendReplacement(formatted, Matcher.quoteReplacement(replacement));
         }
+
         matcher.appendTail(formatted);
 
         return formatted.toString();

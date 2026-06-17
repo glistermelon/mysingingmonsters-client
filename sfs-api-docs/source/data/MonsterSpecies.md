@@ -63,7 +63,7 @@
   - 
 * - genes
   - string
-  - Each letter in the string corresponds to an <SfsGene> (an element).
+  - Each letter in the string corresponds to an <[Gene](/data/Gene)> (an element).
 * - view_in_market
   - integer
   - Whether or not the monster is visible in the market (not including the starmarket or buybacks).

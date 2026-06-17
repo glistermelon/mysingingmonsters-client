@@ -44,7 +44,7 @@
   - long
   - 
 * - battle
-  - [Battle Data](/data/BattleData)
+  - [Battle Data](/data/[Battle Data](/data/BattleData))
   - 
 * - level
   - integer

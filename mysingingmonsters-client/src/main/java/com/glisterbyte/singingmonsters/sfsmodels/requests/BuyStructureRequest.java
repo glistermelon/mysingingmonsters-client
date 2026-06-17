@@ -6,7 +6,7 @@ import com.glisterbyte.singingmonsters.sfsmodels.SfsRequestModel;
 /**
  * Buys and places a structure.
  *
- * @additionalRequest After a successful response, the client should send <@MultiUpdateMonsterRequest>.
+ * @additionalRequest After a successful response, the client should send MultiUpdateMonsterRequest.
  */
 @SfsCmd("gs_buy_structure")
 public class BuyStructureRequest extends SfsRequestModel {

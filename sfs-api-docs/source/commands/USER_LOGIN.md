@@ -16,7 +16,7 @@ The first request to be sent by the client to the server.
   - Type
   - Description
 * - data
-  - [Login Data](/data/LoginData)
+  - [Login Data](/data/[Login Data](/data/LoginData))
   - 
 * - password
   - string

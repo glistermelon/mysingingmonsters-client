@@ -7,7 +7,7 @@ import com.glisterbyte.singingmonsters.sfsmodels.SfsRequestModel;
  * Finishes clearing of an obstacle.
  * Fails if the removal timer hasn't finished yet.
  *
- * @additionalRequest After a successful response, the client should send <@MultiUpdateMonsterRequest>.
+ * @additionalRequest After a successful response, the client should send MultiUpdateMonsterRequest.
  */
 @SfsCmd("gs_clear_obstacle")
 public class ClearObstacleRequest extends SfsRequestModel {

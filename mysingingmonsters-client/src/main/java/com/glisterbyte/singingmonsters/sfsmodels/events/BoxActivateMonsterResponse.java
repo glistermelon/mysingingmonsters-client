@@ -6,7 +6,7 @@ import com.glisterbyte.singingmonsters.sfsmodels.SfsCorrelatedResultResponse;
 import java.util.Optional;
 
 /**
- * @additionalResponse On success, <@UpdateMonsterEvent> is also sent.
+ * @additionalResponse On success, UpdateMonsterEvent is also sent.
  */
 @SfsCmd("gs_box_activate_monster")
 public class BoxActivateMonsterResponse extends SfsCorrelatedResultResponse {

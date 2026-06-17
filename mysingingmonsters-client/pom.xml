@@ -2,6 +2,8 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <packaging>jar</packaging>
+
     <parent>
         <groupId>com.glisterbyte</groupId>
         <artifactId>mysingingmonsters</artifactId>
@@ -9,7 +11,13 @@
     </parent>
 
     <artifactId>mysingingmonsters-client</artifactId>
-    <packaging>jar</packaging>
+
+    <name>My Singing Monsters Client</name>
+    <description>An unofficial My Singing Monsters client</description>
+
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+    </properties>
 
     <build>
 
@@ -24,13 +32,77 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.4.0</version>
+                <executions>
+                    <execution>
+                        <id>build-jar-with-sources</id>
+                        <phase>verify</phase>
+                        <goals><goal>jar-no-fork</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.12.0</version>
                 <configuration>
-                    <outputDirectory>${project.basedir}/..</outputDirectory>
-                    <additionalOptions>
-                        <additionalOption>-Xdoclint:none</additionalOption>
-                    </additionalOptions>
+                    <doclint>none</doclint>
+                    <tags>
+                        <tag>
+                            <name>additionalRequest</name>
+                        </tag>
+                        <tag>
+                            <name>additionalResponse</name>
+                        </tag>
+                    </tags>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>build-jar-with-javadocs</id>
+                        <phase>verify</phase>
+                        <goals><goal>jar</goal></goals>
+                    </execution>
+                    <execution>
+                        <id>build-site-javadocs</id>
+                        <phase>verify</phase>
+                        <goals><goal>javadoc</goal></goals>
+                        <configuration>
+                            <javadocExecutable>${javadocJdk26.executable}</javadocExecutable>
+                            <release>26</release>
+                            <outputDirectory>${project.build.directory}/javadocs-jdk26</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>rename-javadocs-folder</id>
+                        <phase>verify</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+                                <delete dir="${maven.multiModuleProjectDirectory}/docs"/>
+                                <move file="${project.build.directory}/javadocs-jdk26/apidocs"
+                                      tofile="${maven.multiModuleProjectDirectory}/docs"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.6</version>
+                <configuration>
+                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
 
@@ -63,46 +135,39 @@
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-            <version>0.10.2</version>
         </dependency>
         <dependency>
             <groupId>net.harawata</groupId>
             <artifactId>appdirs</artifactId>
             <version>1.5.0</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.22.0</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
             <version>5.12.0</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.20.0</version>
-            <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.therapi</groupId>
+            <artifactId>therapi-runtime-javadoc-scribe</artifactId>
+            <version>0.15.0</version>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.11.0</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>com.github.therapi</groupId>
-            <artifactId>therapi-runtime-javadoc-scribe</artifactId>
-            <version>0.15.0</version>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>

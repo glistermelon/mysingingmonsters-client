@@ -7,7 +7,7 @@ import com.glisterbyte.singingmonsters.sfsmodels.SfsRequestModel;
  * On islands that have nurseries, this hatches an egg that has finished incubating.
  * On islands that do not have nurseries, this is used directly to buy a monster.
  *
- * @additionalRequest After a successful response, the client should send <@MultiUpdateMonsterRequest>.
+ * @additionalRequest After a successful response, the client should send MultiUpdateMonsterRequest.
  */
 @SfsCmd("gs_hatch_egg")
 public class HatchEggRequest extends SfsRequestModel {

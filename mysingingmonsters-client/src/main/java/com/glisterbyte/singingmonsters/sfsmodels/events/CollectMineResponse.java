@@ -4,7 +4,7 @@ import com.glisterbyte.singingmonsters.sfsmapping.SfsCmd;
 import com.glisterbyte.singingmonsters.sfsmodels.SfsResultResponse;
 
 /**
- * @additionalResponse On success, <@UpdateStructureEvent> is also sent.
+ * @additionalResponse On success, UpdateStructureEvent is also sent.
  */
 @SfsCmd("gs_collect_from_mine")
 public class CollectMineResponse extends SfsResultResponse { }

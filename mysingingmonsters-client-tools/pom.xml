@@ -10,7 +10,9 @@
 
     <artifactId>mysingingmonsters-client-tools</artifactId>
 
-    <packaging>jar</packaging>
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+    </properties>
 
     <dependencies>
         <dependency>

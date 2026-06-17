@@ -12,5 +12,5 @@
 * - user_structure_id
   - long
 * - properties
-  - [Update Structure Properties](/data/UpdateStructureProperties)?
+  - [Update Structure Properties](/data/[Update Structure Properties](/data/UpdateStructureProperties))?
 ```

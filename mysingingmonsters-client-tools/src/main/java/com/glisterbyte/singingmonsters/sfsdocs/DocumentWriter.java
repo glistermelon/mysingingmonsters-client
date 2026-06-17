@@ -5,9 +5,9 @@ import com.glisterbyte.singingmonsters.sfsmapping.*;
 import com.glisterbyte.singingmonsters.sfsmodels.*;
 import com.glisterbyte.singingmonsters.sfsmodels.events.GetFriendsResponse;
 import com.glisterbyte.singingmonsters.sfsmodels.requests.PlayerRequest;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.helpers.MessageFormatter;
 
-import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class DocumentWriter {
 

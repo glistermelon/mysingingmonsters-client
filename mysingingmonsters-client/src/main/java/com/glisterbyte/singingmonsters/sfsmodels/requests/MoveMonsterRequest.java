@@ -6,7 +6,7 @@ import com.glisterbyte.singingmonsters.sfsmodels.SfsRequestModel;
 /**
  * Moves a monster and sets its volume.
  *
- * @additionalRequest After a successful response, the client should send <@MultiUpdateMonsterRequest>.
+ * @additionalRequest After a successful response, the client should send MultiUpdateMonsterRequest.
  */
 @SfsCmd("gs_move_monster")
 public class MoveMonsterRequest extends SfsRequestModel {
