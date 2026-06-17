@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 public class GenerateSfsApiDocs {
 
-    private static final Path sourcePath = Path.of("sfs-api-docs-2/source");
+    private static final Path sourcePath = Path.of("sfs-api-docs/source");
 
     private static void writeIndexFile(List<Document> docs) throws IOException {
 

@@ -1,10 +1,7 @@
 package com.glisterbyte.singingmonsters.sfsdocs;
 
 import com.github.therapi.runtimejavadoc.*;
-import com.glisterbyte.singingmonsters.sfsmapping.SfsEntryArray;
-import com.glisterbyte.singingmonsters.sfsmapping.SfsKey;
-import com.glisterbyte.singingmonsters.sfsmapping.SfsObjectField;
-import com.glisterbyte.singingmonsters.sfsmapping.SfsOptional;
+import com.glisterbyte.singingmonsters.sfsmapping.*;
 import com.glisterbyte.singingmonsters.sfsmodels.*;
 import com.glisterbyte.singingmonsters.sfsmodels.events.GetFriendsResponse;
 import com.glisterbyte.singingmonsters.sfsmodels.requests.PlayerRequest;
@@ -137,11 +134,17 @@ public class DocumentWriter {
                     ? field.getAnnotation(SfsKey.class).value()
                     : field.getName();
 
-            String val = formatType(field);
+            String val;
+            if (field.isAnnotationPresent(SfsJsonArray.class)) val = "string";
+            else val = formatType(field);
             if (field.isAnnotationPresent(SfsOptional.class)) val += "?";
 
-            String desc = formatter.format(RuntimeJavadoc.getJavadoc(field).getComment())
-                    .replace("\n", "");
+            String desc = "";
+            if (field.isAnnotationPresent(SfsJsonArray.class)) {
+                desc += "Serialized JSON to be deserialized as " + formatType(field) + ". ";
+            }
+            desc += formatter.format(RuntimeJavadoc.getJavadoc(field).getComment())
+                    .replace("\n", "").strip();
 
             table.addRow(key, val, desc);
 

@@ -62,11 +62,11 @@
   - long?
   - When the timer started on filling a timed deactivated monster (like a Wublin)
 * - box_requirements
-  - array\<integer\>?
-  - An array of monster species IDs, where an ID occurs as many times in the list as it is required to be zapped
+  - string?
+  - Serialized JSON to be deserialized as array\<integer\>. An array of monster species IDs, where an ID occurs as many times in the list as it is required to be zapped
 * - boxed_eggs
-  - array\<integer\>?
-  - An array of monster species IDs, where an ID occurs as many times in the list as it has already been zapped. This field is no longer present after activation (before activation, it is always present and can be empty).
+  - string?
+  - Serialized JSON to be deserialized as array\<integer\>. An array of monster species IDs, where an ID occurs as many times in the list as it has already been zapped. This field is no longer present after activation (before activation, it is always present and can be empty).
 * - random_underling_collection_min
   - integer?
   - Duration (in minutes) after the last collection time at which currency is available for collection

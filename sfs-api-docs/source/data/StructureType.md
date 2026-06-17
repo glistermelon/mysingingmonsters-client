@@ -68,8 +68,8 @@
   - integer
   - Structure type ID that this structure can be upgraded to, or 0 if it can't upgrade
 * - allowed_on_island
-  - array\<integer\>?
-  - Serialized JSON array of island type IDs
+  - string?
+  - Serialized JSON to be deserialized as array\<integer\>. Serialized JSON array of island type IDs
 ```
 
 ## Referenced By
