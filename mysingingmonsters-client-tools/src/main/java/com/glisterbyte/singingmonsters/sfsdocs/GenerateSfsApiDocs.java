@@ -22,6 +22,14 @@ public class GenerateSfsApiDocs {
         indexLines.add("Unofficial My Singing Monsters API Docs");
         indexLines.add("=======================================");
 
+        indexLines.add(".. warning::\n" +
+                "   This documentation is currently largely incomplete.\n" +
+                "   For any particular command/event/data, the only documented parameters are those\n" +
+                "   that have been found relevant before. There are a lot of parameters that just\n" +
+                "   aren't documented here but do actually exist.\n" +
+                "   For example, :doc:`data/GenericUpdate` includes a ``coins`` field, but\n" +
+                "   it is unknown how that differs from ``coins_actual``, so it isn't documented.");
+
         indexLines.add("");
         indexLines.add(".. toctree::");
         indexLines.add("   :maxdepth: 1");

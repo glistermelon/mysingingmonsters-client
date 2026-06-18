@@ -1,5 +1,12 @@
 Unofficial My Singing Monsters API Docs
 =======================================
+.. warning::
+   This documentation is currently largely incomplete.
+   For any particular command/event/data, the only documented parameters are those
+   that have been found relevant before. There are a lot of parameters that just
+   aren't documented here but do actually exist.
+   For example, :doc:`data/GenericUpdate` includes a ``coins`` field, but
+   it is unknown how that differs from ``coins_actual``, so it isn't documented.
 
 .. toctree::
    :maxdepth: 1

@@ -12,7 +12,7 @@
     <version>0.1.0</version>
 
     <name>My Singing Monsters Tools</name>
-    <description>Unofficial My Singing Monsters tools</description>
+    <description>Unofficial tools for My Singing Monsters</description>
     <url>https://github.com/glistermelon/mysingingmonsters-client</url>
 
     <licenses>
@@ -39,7 +39,6 @@
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
     <modules>
@@ -61,5 +60,35 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.8</version>
+
+                <executions>
+                    <execution>
+                        <id>gpg-sign</id>
+                        <phase>verify</phase>
+                        <goals><goal>sign</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.9.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
