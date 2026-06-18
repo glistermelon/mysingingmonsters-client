@@ -86,7 +86,7 @@
                 <configuration>
                     <publishingServerId>central</publishingServerId>
                     <excludeArtifacts>
-                        <artifact>com.glisterbyte.mysingingmonsters-client-tools</artifact>
+                        <artifactId>mysingingmonsters-client-tools</artifactId>
                     </excludeArtifacts>
                 </configuration>
             </plugin>
