@@ -47,4 +47,31 @@ public enum SFSDataType {
    public int getTypeID() {
       return this.typeID;
    }
+
+   public static String getCompactName(SFSDataType type) {
+      return switch (type) {
+          case NULL -> "nil";
+          case BOOL -> "b";
+          case BYTE -> "u8";
+          case SHORT -> "i16";
+          case INT -> "i32";
+          case LONG -> "i64";
+          case FLOAT -> "f";
+          case DOUBLE -> "d";
+          case UTF_STRING -> "s";
+          case BOOL_ARRAY -> getCompactName(BOOL) + "[]";
+          case BYTE_ARRAY -> getCompactName(BYTE) + "[]";
+          case SHORT_ARRAY -> getCompactName(SHORT) + "[]";
+          case INT_ARRAY -> getCompactName(INT) + "[]";
+          case LONG_ARRAY -> getCompactName(LONG) + "[]";
+          case FLOAT_ARRAY -> getCompactName(FLOAT) + "[]";
+          case DOUBLE_ARRAY -> getCompactName(DOUBLE) + "[]";
+          case UTF_STRING_ARRAY -> getCompactName(UTF_STRING) + "[]";
+          case SFS_ARRAY -> "[?]";
+          case SFS_OBJECT -> "obj";
+          case CLASS -> "cls";
+          case TEXT -> "txt";
+      };
+   }
+
 }

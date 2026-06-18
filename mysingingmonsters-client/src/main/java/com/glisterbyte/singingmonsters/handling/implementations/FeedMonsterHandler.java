@@ -20,13 +20,17 @@ public class FeedMonsterHandler extends UncorrelatedResultResponseHandler<Long, 
 
     @Override
     public Void handleSuccess(FeedMonsterResponse event, Long userMonsterId) throws InterruptedException, ClientException {
+
         /*
             Event doesn't actually do anything besides signal success or failure,
             but MonsterImpl does some approximated updates anyway
          */
+
         if (userMonsterId != null) client.getMonster(userMonsterId).getEventHandler().handleFeedEvent(event);
-        else logger.error("FeedMonsterHandler request data (user monster id) is null");
+        else throw new ClientException("FeedMonsterHandler request data (user monster id) is null");
+
         return null;
+
     }
 
     public void request(Monster monster) throws InterruptedException, ClientException {

@@ -9,8 +9,6 @@ import com.glisterbyte.singingmonsters.main.monster.eggbox.EggBoxMonster;
 import com.glisterbyte.singingmonsters.main.monster.Monster;
 import com.glisterbyte.singingmonsters.sfsmodels.requests.BoxActivateMonsterRequest;
 import com.glisterbyte.singingmonsters.sfsmodels.events.BoxActivateMonsterResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /*
     TODO: Successful activation has not been tested.

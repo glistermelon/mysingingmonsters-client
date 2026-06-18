@@ -58,9 +58,9 @@ public final class GlobalConfig {
             if (inputStream != null) props.load(inputStream);
         }
         catch (IOException ex) {
-            logger.warn("Failed to client app properties; using placeholder properties");
+            logger.warn("Failed to load client app properties from resources; using placeholder properties");
         }
-        APP_NAME = props.getProperty("app.name", "mysingingmonsters-api-java-client");
+        APP_NAME = props.getProperty("app.name", "mysingingmonsters-client");
         APP_VERSION = props.getProperty("app.version", "unknown-version");
         APP_AUTHOR = props.getProperty("app.author", "unknown-author");
     }

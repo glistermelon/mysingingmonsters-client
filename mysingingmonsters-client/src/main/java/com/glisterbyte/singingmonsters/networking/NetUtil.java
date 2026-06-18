@@ -13,11 +13,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Logger;
 
 class NetUtil {
-
-    public final static Logger logger = Logger.getLogger(NetUtil.class.getName());
 
     public static String jsonToHttpQueryStr(ObjectNode json, String[] order) {
         List<String> parts = new ArrayList<>();

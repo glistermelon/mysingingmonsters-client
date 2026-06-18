@@ -117,7 +117,11 @@ public class WebsocketClient extends WebSocketListener {
             }
         }
 
-        logger.info("Websocket {} failed due to exception; response: {}", socket, responseInfo, ex);
+        logger.info(
+                "Websocket {} failed due to exception; Note the websocket failing may be an" +
+                        " intentional disconnection by the client; response: {}",
+                socket, responseInfo, ex
+        );
 
         socketRef.set(null);
         if (openFuture != null) {
@@ -133,12 +137,19 @@ public class WebsocketClient extends WebSocketListener {
     @Override
     public void onMessage(@NotNull WebSocket socket, @NotNull ByteString bytes) {
 
-        logger.debug("Received message:\n{}", StringUtil.formatByteString(bytes));
+        String serializedMessage = bytes.base64();
 
         try {
 
             EventFrame frame = EventFrame.deserialize(bytes);
-            logger.debug("Data of received message:\n{}", frame.data.getDump());
+
+            logger.debug(
+                    "Received message '{}' {} {}",
+                    frame.command,
+                    frame.data.getCompactDump(),
+                    serializedMessage
+            );
+
             Class<? extends SfsEventModel> classType
                     = SfsCmdResponseRegistry.getCmdResponseType(frame.command);
 
@@ -190,16 +201,16 @@ public class WebsocketClient extends WebSocketListener {
 
         }
         catch (ClientDeserializeException ex) {
-            logger.warn("Failed to deserialize a message from the server", ex);
+            logger.error("Failed to deserialize message from the server {}", serializedMessage, ex);
         }
         catch (MissingCommandException ex) {
             logger.warn("Received unrecognized command '{}' from the server", ex.getCommand());
         }
         catch (MapFromSfsException ex) {
-            logger.warn("Failed to map event data from the server", ex);
+            logger.error("Failed to map data from the server {}", serializedMessage, ex);
         }
         catch (Throwable ex) {
-            logger.warn("Message from the server caused an exception", ex);
+            logger.error("Exception thrown when handling message from server {}", serializedMessage, ex);
         }
 
     }
@@ -271,7 +282,7 @@ public class WebsocketClient extends WebSocketListener {
                     break;
                 }
                 catch (ClientException ex) {
-                    logger.warn("Failed to send keep-alive due to exception", ex);
+                    logger.error("Failed to send keep-alive due to exception", ex);
                 }
             }
         });
@@ -373,14 +384,20 @@ public class WebsocketClient extends WebSocketListener {
         frame.command = cmd;
         frame.data = data;
 
-        logger.debug(
-                "Sending request with data:\n{} and frame:\n{}",
-                frame.data.getDump(), StringUtil.formatByteString(frame.serialize())
-        );
-
         synchronized (sequenceCounter) {
+
             frame.seqNum = sequenceCounter.getAndIncrement();
-            getSocket().send(frame.serialize());
+            ByteString serialized = frame.serialize();
+
+            logger.debug(
+                    "Sending request '{}' {} {}",
+                    frame.command,
+                    frame.data.getCompactDump(),
+                    serialized.base64()
+            );
+
+            getSocket().send(serialized);
+
         }
 
         lastSendTime = Instant.now();

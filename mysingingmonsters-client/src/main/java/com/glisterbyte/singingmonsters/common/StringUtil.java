@@ -39,7 +39,7 @@ public class StringUtil {
         return friendCode;
     }
 
-    public static String formatByteString(ByteString bytes) {
+    public static String formatByteStringDump(ByteString bytes) {
 
         final int rowLength = 16;
 

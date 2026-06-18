@@ -62,6 +62,16 @@ public class SFSObject implements ISFSObject {
       return !noFormat ? this.dump() : this.getDump();
    }
 
+   public String getCompactDump() {
+
+      return "{" +
+               String.join(",", getKeys().stream().map(
+                       key -> '"' + key + '"' + ':' + get(key).toCompactString()
+               ).toList())
+               + "}";
+
+   }
+
    private String dump() {
       StringBuilder buffer = new StringBuilder();
       buffer.append('{');
