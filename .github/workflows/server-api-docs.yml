@@ -1,0 +1,67 @@
+name: Generate and Publish Server API docs
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  generate:
+
+    name: Generate and Publish Server API docs
+  
+    runs-on: ubuntu-latest
+  
+    permissions:
+      contents: write
+
+    steps:
+
+      - name: Checkout source code
+        uses: actions/checkout@v6
+
+      - name: Cache Maven packages
+        uses: actions/cache@v5
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: 'temurin'
+
+      - name: Set up Python 3.14
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+
+      - name: Generate server API docs
+        run: mvn install -DskipTests -Dgpg.skip=true --projects '!mysingingmonsters-client-tools' && \
+                mvn compile exec:java -pl mysingingmonsters-client-tools -Dexec.mainClass="com.glisterbyte.singingmonsters.sfsdocs.GenerateSfsApiDocs"; \
+                rm -rf ~/.m2/repository/com/glisterbyte
+
+      - name: Build Sphinx docs
+        run: |
+          cd sfs-api-docs
+          python -m venv venv
+          source venv/bin/activate
+          pip install sphinx sphinx_rtd_theme myst_parser
+          make html
+
+      - name: Move docs to versioned directory
+        run: |
+          rm -rf docs/server-api-docs
+          mkdir -p docs
+          mv sfs-api-docs/build/html docs/server-api-docs
+          rm -r sfs-api-docs
+
+      - name: Commit and push server API docs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs
+          git commit -m "Generate server API docs for ${VERSION}"
+          git push origin master
