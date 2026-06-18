@@ -1,0 +1,63 @@
+name: Build and Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+
+  build:
+
+    name: Deploy (JDK ${{ matrix.java }})
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java: [ 21 ]
+
+    steps:
+
+      - name: Checkout source code
+        uses: actions/checkout@v6
+
+      - name: Cache Maven packages
+        uses: actions/cache@v5
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v5
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'temurin'
+
+      - name: Import GPG key
+        run: |
+          export GPG_TTY=$(tty)
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
+          gpg --list-secret-keys --keyid-format=long
+          
+      - name: Configure Maven settings.xml
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<EOF
+          <settings>
+            <servers>
+              <server>
+                <id>central</id>
+                <username>${{ secrets.CENTRAL_USERNAME }}</username>
+                <password>${{ secrets.CENTRAL_PASSWORD }}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Build and deploy
+        # run: mvn -B clean deploy -DskipTests
+        run: mvn -B clean verify -DskipTests
