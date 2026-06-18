@@ -65,5 +65,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs
-          git commit -m "Generate server API docs for ${VERSION}"
+          git commit -m "Regenerate server API docs"
           git push origin master
