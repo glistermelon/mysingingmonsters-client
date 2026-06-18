@@ -59,4 +59,6 @@ jobs:
           EOF
 
       - name: Build and deploy
-        run: mvn -B clean verify -DskipTests -Dgpg.pinentryMode=loopback -Dgpg.passphrase="${{ secrets.GPG_PASSPHRASE }}"
+        env:
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: mvn -B clean verify -DskipTests -Dgpg.pinentryMode=loopback
