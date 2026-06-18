@@ -38,7 +38,7 @@ I personally have not used the client on my own account.
 ## Documentation
 
 * [Java Client Documentation](https://glistermelon.github.io/mysingingmonsters-client/)
-* [Server API Documentation](https://msm-api-docs.glisterbyte.com/)
+* [Server API Documentation](https://glistermelon.github.io/mysingingmonsters-client/server-api-docs/)
 
 ## Installation
 
