@@ -100,7 +100,6 @@
             <id>build-site-docs</id>
             <build>
                 <plugins>
-
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
@@ -117,27 +116,6 @@
                             </execution>
                         </executions>
                     </plugin>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <version>3.2.0</version>
-                        <executions>
-                            <execution>
-                                <id>rename-javadocs-folder</id>
-                                <phase>verify</phase>
-                                <goals><goal>run</goal></goals>
-                                <configuration>
-                                    <target>
-                                        <delete dir="${maven.multiModuleProjectDirectory}/docs"/>
-                                        <move file="${project.build.directory}/javadocs-jdk26/apidocs"
-                                              tofile="${maven.multiModuleProjectDirectory}/docs"/>
-                                    </target>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
                 </plugins>
             </build>
         </profile>
