@@ -27,12 +27,10 @@ public abstract class UncorrelatedEventHandler <RequestData, EventT extends SfsE
             @Nullable RequestData requestData
     ) {
         waiterLock.lock();
-        System.out.println("locked " + getEventType().getName());
         CompletableFuture<HandledEvent<RequestData, EventT, HandledT>> future = new CompletableFuture<>();
         waiterRef.set(new ResponseWaiter<>(requestData, future));
         future.whenComplete((x1, x2) -> {
             waiterLock.unlock();
-            System.out.println("unlocked " + getEventType().getName());
         });
         return future;
     }

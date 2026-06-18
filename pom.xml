@@ -9,7 +9,7 @@
 
     <groupId>com.glisterbyte</groupId>
     <artifactId>mysingingmonsters</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.3</version>
 
     <name>My Singing Monsters</name>
     <description>Unofficial Java libraries for My Singing Monsters</description>

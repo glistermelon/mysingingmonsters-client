@@ -33,7 +33,6 @@ public class RefCountSemaphoreMap<K> {
     private final Map<K, Entry> map = new HashMap<>();
 
     public Lock lock(K key) {
-        System.out.println(StringUtil.format("lock ({}): {}", this, key));
         Entry entry;
         synchronized (map) {
             entry = map.computeIfAbsent(key, x -> new Entry());
@@ -50,7 +49,6 @@ public class RefCountSemaphoreMap<K> {
     }
 
     private void unlock(K key) {
-        System.out.println(StringUtil.format("unlock ({}): {}", this, key));
         synchronized (map) {
             Entry entry = map.get(key);
             if (entry == null) throw new IllegalStateException("Attempt to unlock already unlocked key '" + key + "'");
