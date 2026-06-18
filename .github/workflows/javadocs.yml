@@ -61,7 +61,7 @@ jobs:
 
       - name: Move docs to versioned directory
         run: |
-          rm -rf docs/${VERSION}
+          rm -rf docs/${VERSION}/client-docs
           mkdir -p docs/${VERSION}
           mv mysingingmonsters-client/target/javadocs-jdk26/apidocs docs/${VERSION}/client-docs
 
