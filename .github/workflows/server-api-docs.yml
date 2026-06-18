@@ -39,9 +39,11 @@ jobs:
           python-version: '3.14'
 
       - name: Generate server API docs
-        run: mvn install -DskipTests -Dgpg.skip=true --projects '!mysingingmonsters-client-tools' && \
-                mvn compile exec:java -pl mysingingmonsters-client-tools -Dexec.mainClass="com.glisterbyte.singingmonsters.sfsdocs.GenerateSfsApiDocs"; \
-                rm -rf ~/.m2/repository/com/glisterbyte
+        run: |
+          mvn install -DskipTests -Dgpg.skip=true --projects '!mysingingmonsters-client-tools'
+          mvn compile exec:java -pl mysingingmonsters-client-tools -Dexec.mainClass="com.glisterbyte.singingmonsters.sfsdocs.GenerateSfsApiDocs"; EXIT=$?
+          rm -rf ~/.m2/repository/com/glisterbyte
+          exit $EXIT
 
       - name: Build Sphinx docs
         run: |
