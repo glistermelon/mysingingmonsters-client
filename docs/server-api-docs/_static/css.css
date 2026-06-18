@@ -1,0 +1,11 @@
+.wy-nav-content {
+    max-width: 75%;
+    width: auto;
+}
+
+table.docutils td,
+table.docutils th {
+    white-space: normal;
+    word-break: break-word;
+    max-width: none;
+}

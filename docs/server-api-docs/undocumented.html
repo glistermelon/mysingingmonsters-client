@@ -1,0 +1,620 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undocumented API Commands &mdash; Unofficial My Singing Monsters API Documentation 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css.css?v=9014faf5" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/github.js?v=70104e3a"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Unofficial My Singing Monsters API Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="topics/EntryArray.html">Entry Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/StandardResponseParameters.html">Standard Response Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/GenericUpdateProperties.html">Generic Update Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/DatabaseQueries.html">Database Queries</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Commands</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_box_activate_monster.html">Box Activate Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_box_add_egg.html">Box Egg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_breed_monsters.html">Breed Monsters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_buy_egg.html">Buy Egg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_buy_island.html">Buy Island</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_buy_structure.html">Buy Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_change_island.html">Change Island</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_clear_obstacle.html">Clear Obstacle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_collect_from_mine.html">Collect Mine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_collect_monster.html">Collect Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_feed_monster.html">Feed Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_finish_baking.html">Finish Baking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_finish_breeding.html">Finish Breeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_flip_monster.html">Flip Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_flip_structure.html">Flip Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_hatch_egg.html">Hatch Egg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/USER_LOGIN.html">Login</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_move_monster.html">Move Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_move_structure.html">Move Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_multi_neighbors.html">Multi Update Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_mute_monster.html">Mute Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_name_monster.html">Name Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_player.html">Player</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/db_bakery_foods.html">Query Bakery Foods Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/db_gene.html">Query Genes Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/db_monster.html">Query Monsters Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/db_structure.html">Query Structures Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_friend_request.html">Request Friend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_sell_egg.html">Sell Egg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_sell_monster.html">Sell Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_sell_structure.html">Sell Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_start_baking.html">Start Baking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_start_obstacle.html">Start Remove Obstacle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/gs_get_friend_visit_data.html">Visit Friend</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data/BakeryRecipe.html">Bakery Recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/Baking.html">Baking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/BattleData.html">Battle Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/Breeding.html">Breeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/Friend.html">Friend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/FriendRequest.html">Friend Request</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/Gene.html">Gene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/GenericUpdate.html">Generic Update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/Island.html">Island</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/LoginData.html">Login Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/Monster.html">Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/MonsterEgg.html">Monster Egg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/MonsterLevel.html">Monster Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/MonsterLike.html">Monster Like</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/MonsterMultiUpdate.html">Monster Multi Update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/MonsterSpecies.html">Monster Species</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/Player.html">Player</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/PlayerProfile.html">Player Profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/Structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/StructureType.html">Structure Type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/Tribe.html">Tribe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/UpdateStructureProperties.html">Update Structure Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/UserDisplayData.html">User Display Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/VisitData.html">Visit Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Events</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="events/gs_update_monster.html">Update Monster Event</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events/gs_update_structure.html">Update Structure Event</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Unofficial My Singing Monsters API Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Undocumented API Commands</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/undocumented.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="undocumented-api-commands">
+<h1>Undocumented API Commands<a class="headerlink" href="#undocumented-api-commands" title="Link to this heading"></a></h1>
+<p>The below were extracted from the ARMv8 Android shared object file by Ghidra.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Location</p></th>
+<th class="head"><p>Code Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00696ad7</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_achievement_unlocked</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00636deb</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_activate_daily_currency_pack</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00692a8a</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_activate_island_theme</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006521cb</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_add_friend</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006644eb</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_add_soul_link</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00632844</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_app_link</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0065611c</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_attempt_early_box_activate</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00648e57</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_box_activate_monster</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006699b0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_box_add_egg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0065613a</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_box_add_monster</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0065b678</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_box_purchase_fill</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006890cd</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_breed_monsters</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0067773d</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_buy_egg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0062d51c</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_buy_structure</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0062d52d</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_buy_tile</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00652260</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_cancel_tribe_invite</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0062462f</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_cancel_tribe_request</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0062460f</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_cant_breed</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00648e84</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_clear_obstacle</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0067ff02</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_clear_obstacle_speed_up</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0063b6f4</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_client_version_error</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0067fedf</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_cruc_heat</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00677748</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_daily_currency_pack</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00696aaa</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_daily_reward</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0067bd5b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_flip_level</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006521a0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_flip_mini_game</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0061f8bb</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_invite_reward</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006644a2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_memory_mini_game</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0065b665</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_monster</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0062d4ed</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_multi_monster</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00696b58</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_nucleus_reward</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0061f8d4</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_rewards</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00628ecd</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_scratch_off</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006a4909</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_synthesizing_failure</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0066e1f6</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_synthesizing_success</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00652277</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_collect_torchgift</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00644b21</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_currency_conversion</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006521d9</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_daily_login_buyback</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0062d578</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_decline_all_tribal_invites</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006327ca</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_delete_account</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00677800</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_delete_composer_template</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0062d596</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_delete_mail</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00669a2f</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_delete_message</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006890df</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_delete_messages</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006699a0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_dipster_data</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0069b454</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_display_generic_message</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006890a8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_epic_monster_data</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006327b1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_facebook_help_nursery</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0067bd85</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_facebook_nursery_help_received</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00696aef</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_feed_monster</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006a02a5</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_finish_amber_evolve</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00696b45</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_finish_attuning</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0063ff86</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_finish_baking</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00692a5f</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_finish_breeding</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006ad250</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_finish_fuzing</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00696b19</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_finish_structure</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00636dcf</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_finish_upgrade_structure</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00684896</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_flip_boards</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0068e31b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_flip_levels</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0067ff1d</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_flip_minigame_cost</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0069b444</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_flip_monster</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00684871</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_flip_structure</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0063b70c</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_forward_events</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00660148</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_friend_version_error</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0065b6ae</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_get_code</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0067fec6</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_get_friend_visit_data</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006a0286</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_get_friends</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0063b71e</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_get_island_rank</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006890f2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_get_memory_game_numbers</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006a8c0a</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_get_messages</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0064d8b8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_get_random_tribes</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0062d4d4</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_get_random_visit_data</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00632797</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_get_ranked_island_data</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0066018d</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_get_torchgifts</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0068908e</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_get_tribal_island_data</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0064d8cd</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_handle_facebook_help_instances</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00628ec0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_hatch_egg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00692aec</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_incubate_dish_harmonizer_egg</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0061f8ff</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_initialized</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0067bd4d</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_join_tribe</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006734b8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_kick_tribe_request</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006a02bc</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_leave_tribe_request</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00624678</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_light_torch</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00692a72</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_mega_monster_message</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00656173</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_memory_minigame_current_cost</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00669980</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_monster_island_2_island_data</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006890bd</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_move_monster</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0066447b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_move_structure</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00669a14</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_multi_neighbors</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00652188</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_multi_update_monster</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00648e31</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_mute_island</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0065610c</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_mute_monster</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006734fd</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_mute_structure</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00696b72</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_name_monster</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0067feb3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_offer_completed</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0065b652</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_paywall_updated</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0061f8e7</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_place_on_gold_island</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00644ab1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_place_on_tribal</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0062d539</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_play_memory_mini_game</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00624647</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_play_scratch_off</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00648e20</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_player_banned</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00648e96</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_player_has_scratch_off</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0067bdfb</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_process_unclaimed_codes</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0063b731</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_process_unclaimed_purchases</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00692aa3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_purchase_buyback</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0067bd18</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_purchase_evo_powerup_unlock</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00696aff</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_purchase_evolve_unlock</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0066e1c1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_purchase_flip_mini_game</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0062465b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_purchase_memory_mini_game</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0061f931</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_purchase_scratch_off</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006848e8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_quest_collect</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0066011c</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_quest_event</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00644b13</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_quest_read</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0062d628</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_quests_read</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00696ac2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_rare_monster_data</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0067772e</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_rate_island</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0063ff97</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_referral_request</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006ad261</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs_refresh_daily_currency_pack</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006521f0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_attuner_gene</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00677767</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_bakery_foods</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00696b2d</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_battle</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0061f90e</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_battle_levels</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0066e1dc</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_battle_monster_actions</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00636e2a</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_battle_monster_stats</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006699e3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_battle_monster_training</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006848a5</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_battle_music</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006699d7</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_breeding</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006ad280</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_costumes</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00628eef</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_daily_cumulative_login</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0062469f</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_entity_alt_costs</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0067bde9</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_ethereal_islet</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00644aec</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_flexeggdefs</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">00636e1c</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_flip_pools</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00636e0b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_island_themes</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0066019f</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_island_v2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">006a02d3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_moniker</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006734ce</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_monster</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00692ab7</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_nucleus_reward</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">006a48b4</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_polarity_amplifier_levels</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">00677777</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_scratch_offs</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0063ffbd</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_store_replacements</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0063b750</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_store_v2</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0067ff46</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_structure</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0064d8ef</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">db_titansoul_levels</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, glistermelon.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

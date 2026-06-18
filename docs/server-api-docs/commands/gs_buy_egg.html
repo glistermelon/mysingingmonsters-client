@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buy Egg &mdash; Unofficial My Singing Monsters API Documentation 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css.css?v=9014faf5" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/github.js?v=70104e3a"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Buy Island" href="gs_buy_island.html" />
+    <link rel="prev" title="Breed Monsters" href="gs_breed_monsters.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Unofficial My Singing Monsters API Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../topics/EntryArray.html">Entry Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/StandardResponseParameters.html">Standard Response Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/GenericUpdateProperties.html">Generic Update Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/DatabaseQueries.html">Database Queries</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Commands</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gs_box_activate_monster.html">Box Activate Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_box_add_egg.html">Box Egg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_breed_monsters.html">Breed Monsters</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Buy Egg</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#command">Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#request">Request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gs_buy_island.html">Buy Island</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_buy_structure.html">Buy Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_change_island.html">Change Island</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_clear_obstacle.html">Clear Obstacle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_collect_from_mine.html">Collect Mine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_collect_monster.html">Collect Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_feed_monster.html">Feed Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_finish_baking.html">Finish Baking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_finish_breeding.html">Finish Breeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_flip_monster.html">Flip Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_flip_structure.html">Flip Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_hatch_egg.html">Hatch Egg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="USER_LOGIN.html">Login</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_move_monster.html">Move Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_move_structure.html">Move Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_multi_neighbors.html">Multi Update Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_mute_monster.html">Mute Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_name_monster.html">Name Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_player.html">Player</a></li>
+<li class="toctree-l1"><a class="reference internal" href="db_bakery_foods.html">Query Bakery Foods Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="db_gene.html">Query Genes Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="db_monster.html">Query Monsters Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="db_structure.html">Query Structures Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_friend_request.html">Request Friend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_sell_egg.html">Sell Egg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_sell_monster.html">Sell Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_sell_structure.html">Sell Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_start_baking.html">Start Baking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_start_obstacle.html">Start Remove Obstacle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gs_get_friend_visit_data.html">Visit Friend</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../data/BakeryRecipe.html">Bakery Recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/Baking.html">Baking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/BattleData.html">Battle Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/Breeding.html">Breeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/Friend.html">Friend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/FriendRequest.html">Friend Request</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/Gene.html">Gene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/GenericUpdate.html">Generic Update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/Island.html">Island</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/LoginData.html">Login Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/Monster.html">Monster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/MonsterEgg.html">Monster Egg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/MonsterLevel.html">Monster Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/MonsterLike.html">Monster Like</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/MonsterMultiUpdate.html">Monster Multi Update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/MonsterSpecies.html">Monster Species</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/Player.html">Player</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/PlayerProfile.html">Player Profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/Structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/StructureType.html">Structure Type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/Tribe.html">Tribe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/UpdateStructureProperties.html">Update Structure Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/UserDisplayData.html">User Display Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/VisitData.html">Visit Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Events</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../events/gs_update_monster.html">Update Monster Event</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/gs_update_structure.html">Update Structure Event</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Unofficial My Singing Monsters API Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Buy Egg</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/commands/gs_buy_egg.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="buy-egg">
+<h1>Buy Egg<a class="headerlink" href="#buy-egg" title="Link to this heading"></a></h1>
+<p>Buys an egg from the market and starts incubating it in a nursery.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>On islands where incubation of an egg is not required, like Wublin Island,
+monsters are bought via Hatch Egg.</p>
+</div>
+<section id="command">
+<h2>Command<a class="headerlink" href="#command" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">gs_buy_egg</span></code></p>
+</section>
+<section id="request">
+<h2>Request<a class="headerlink" href="#request" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>monster_id</p></td>
+<td><p>integer</p></td>
+<td><p>Monster species ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>quest_claim_id</p></td>
+<td><p>long</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>starpower_purchase</p></td>
+<td><p>boolean</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>structure_id</p></td>
+<td><p>long</p></td>
+<td><p>Nursery user structure id</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="response">
+<h2>Response<a class="headerlink" href="#response" title="Link to this heading"></a></h2>
+<p>Though not listed here, the <a class="reference internal" href="../topics/StandardResponseParameters.html"><span class="doc std std-doc">standard response parameters</span></a> are included.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>user_egg</p></td>
+<td><p><a class="reference internal" href="../data/MonsterEgg.html"><span class="doc std std-doc">Monster Egg</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>remove_buyback</p></td>
+<td><p>boolean</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gs_breed_monsters.html" class="btn btn-neutral float-left" title="Breed Monsters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gs_buy_island.html" class="btn btn-neutral float-right" title="Buy Island" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, glistermelon.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
