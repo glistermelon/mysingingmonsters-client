@@ -1,6 +1,7 @@
 package com.glisterbyte.singingmonsters.handling.implementations;
 
 import com.glisterbyte.singingmonsters.exceptions.ClientException;
+import com.glisterbyte.singingmonsters.exceptions.ClientHandlingException;
 import com.glisterbyte.singingmonsters.handling.EventHandlerInitArg;
 import com.glisterbyte.singingmonsters.handling.Request;
 import com.glisterbyte.singingmonsters.handling.UncorrelatedResultResponseHandler;
@@ -27,7 +28,7 @@ public class FeedMonsterHandler extends UncorrelatedResultResponseHandler<Long, 
          */
 
         if (userMonsterId != null) client.getMonster(userMonsterId).getEventHandler().handleFeedEvent(event);
-        else throw new ClientException("FeedMonsterHandler request data (user monster id) is null");
+        else throw new ClientHandlingException("FeedMonsterHandler request data (user monster id) is null");
 
         return null;
 

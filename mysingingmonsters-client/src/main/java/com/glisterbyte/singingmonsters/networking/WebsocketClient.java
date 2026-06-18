@@ -1,7 +1,6 @@
 package com.glisterbyte.singingmonsters.networking;
 
 import com.glisterbyte.singingmonsters.common.GlobalConfig;
-import com.glisterbyte.singingmonsters.common.StringUtil;
 import com.glisterbyte.singingmonsters.exceptions.*;
 import com.glisterbyte.singingmonsters.localization.LocalizedTextManager;
 import com.glisterbyte.singingmonsters.networking.exceptions.*;
@@ -68,10 +67,10 @@ public class WebsocketClient extends WebSocketListener {
         this.localizedTextManager = localizedTextManager;
     }
 
-    private WebSocket getSocket() {
+    private WebSocket getSocket() throws ClientDisconnectedException {
         WebSocket socket = socketRef.get();
         if (socket != null) return socket;
-        else throw new ClientDisconnectedRuntimeException();
+        else throw new ClientDisconnectedException();
     }
 
     @Override
@@ -305,7 +304,7 @@ public class WebsocketClient extends WebSocketListener {
             final Duration remainingBufferTime = disconnectBuffer.minus(timeSinceDisconnect);
             if (remainingBufferTime.isPositive()) Thread.sleep(remainingBufferTime);
 
-            Throwable waiterEx = cause != null ? cause : new ClientDisconnectedRuntimeException();
+            Throwable waiterEx = cause != null ? cause : new ClientDisconnectedException();
             simpleRequestFutures.forEach((cmd, future) -> {
                 future.completeExceptionally(waiterEx);
                 simpleRequestFutures.remove(cmd);
@@ -433,14 +432,14 @@ public class WebsocketClient extends WebSocketListener {
                 completeResponse.sfsObject.putSFSArray(completeResponse.getChunkedPropertyKey(), sfsChunks);
             }
             else {
-                throw new ClientRequestFailedException(
+                throw new ClientChunkingException(
                         "Cannot receive chunked response of type '" + instance.getClass().getName()
                                 + "' that does not inherit SfsChunkedResponse"
                 );
             }
         }
         catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException ex) {
-            throw new ClientRequestFailedException(ex);
+            throw new RuntimeException(ex);
         }
 
         var lock = takeCommandLock(command);
@@ -456,7 +455,7 @@ public class WebsocketClient extends WebSocketListener {
                 if (response == null) throw new ClientTimeoutException("Chunked request for '" + command + "' timed out");
 
                 if (!(response instanceof SfsChunkedDbResponse chunk)) {
-                    throw new ClientRequestFailedException(
+                    throw new ClientChunkingException(
                             "Response of type '" + response.getClass().getName() + "' is not SfsChunkedResponse"
                     );
                 }
@@ -510,7 +509,7 @@ public class WebsocketClient extends WebSocketListener {
             command = responseModel.getDeclaredConstructor().newInstance().getCommand();
         }
         catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException ex) {
-            throw new ClientRequestFailedException(ex);
+            throw new RuntimeException(ex);
         }
 
         SFSObject data;
@@ -518,7 +517,7 @@ public class WebsocketClient extends WebSocketListener {
             data = SfsMapper.mapToSFSObject(request);
         }
         catch (MapToSfsException ex) {
-            throw new ClientException(ex);
+            throw new RuntimeException(ex);
         }
 
         var lock = takeCommandLock(command);

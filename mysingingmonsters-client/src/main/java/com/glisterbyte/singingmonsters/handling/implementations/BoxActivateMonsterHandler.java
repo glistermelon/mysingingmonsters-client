@@ -2,6 +2,8 @@ package com.glisterbyte.singingmonsters.handling.implementations;
 
 import com.glisterbyte.singingmonsters.common.StringUtil;
 import com.glisterbyte.singingmonsters.exceptions.ClientException;
+import com.glisterbyte.singingmonsters.exceptions.ClientHandlingException;
+import com.glisterbyte.singingmonsters.exceptions.ClientIllegalArgumentException;
 import com.glisterbyte.singingmonsters.handling.CorrelatedResultResponseHandler;
 import com.glisterbyte.singingmonsters.handling.EventHandlerInitArg;
 import com.glisterbyte.singingmonsters.handling.Request;
@@ -24,13 +26,13 @@ public class BoxActivateMonsterHandler extends CorrelatedResultResponseHandler<V
     public Void handleSuccess(BoxActivateMonsterResponse event, Void requestData) throws InterruptedException, ClientException {
         Monster monster = client.getMonster(event.user_monster_id);
         if (monster.getSpecies().isWubbox()) {
-            throw new ClientException("Activating wubboxes is not supported yet");
+            throw new ClientIllegalArgumentException("Activating wubboxes is not supported yet");
         }
         else if (monster instanceof EggBoxMonster eggBoxMonster) {
             eggBoxMonster.getEventHandler().handleActivateEvent(event);
         }
         else {
-            throw new ClientException(StringUtil.format(
+            throw new ClientHandlingException(StringUtil.format(
                     "Received activate monster event for non-egg-box-monster {}", monster
             ));
         }

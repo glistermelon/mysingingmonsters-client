@@ -215,7 +215,7 @@ public class Client {
     public synchronized void reconnect() throws InterruptedException, ClientException {
 
         if (authClient == null) {
-            throw new ClientException("Cannot reconnect client that was never connected");
+            throw new ClientConnectionException("Cannot reconnect client that was never connected");
         }
 
         connect();
@@ -355,7 +355,7 @@ public class Client {
         try {
             Island island = getIsland(islandType);
             if (island == null) {
-                throw new ClientException("Cannot switch to unowned island " + islandType);
+                throw new ClientIllegalArgumentException("Cannot switch to unowned island " + islandType);
             }
             setActiveIsland(island);
         }
