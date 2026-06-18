@@ -86,7 +86,7 @@
                 <configuration>
                     <publishingServerId>central</publishingServerId>
                     <excludeArtifacts>
-                        <artifactId>mysingingmonsters-client-tools</artifactId>
+                        <excludeArtifact>mysingingmonsters-client-tools</excludeArtifact>
                     </excludeArtifacts>
                 </configuration>
             </plugin>
