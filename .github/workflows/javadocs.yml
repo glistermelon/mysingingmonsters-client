@@ -46,6 +46,14 @@ jobs:
           java-version: 21
           distribution: 'temurin'
 
+      - name: Set version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "VERSION=v0.0.0-test" >> $GITHUB_ENV
+          else
+            echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          fi
+
       - name: Generate Javadocs
         run: |
           VERSION=${GITHUB_REF#refs/tags/}
