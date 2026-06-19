@@ -10,13 +10,14 @@
     <parent>
         <groupId>com.glisterbyte</groupId>
         <artifactId>mysingingmonsters</artifactId>
-        <version>0.1.3</version>
+        <version>0.1.4</version>
     </parent>
 
     <artifactId>mysingingmonsters-client</artifactId>
 
     <name>My Singing Monsters Client</name>
     <description>An unofficial client for the My Singing Monsters API</description>
+    <url>https://github.com/glistermelon/mysingingmonsters-client</url>
 
     <build>
 

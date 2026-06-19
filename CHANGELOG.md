@@ -22,3 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.3] - 2026-06-18
 ### Fixed
 - Removed System.out.println calls
+
+## [0.1.4] - 2026-06-18
+### Fixed
+- Fixed project URL

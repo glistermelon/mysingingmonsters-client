@@ -35,7 +35,7 @@ I personally have not used the client on my own account.
 
 ## Documentation
 
-* [Java Client Documentation](https://glistermelon.github.io/mysingingmonsters-client/java/client/v0.1.2/)
+* [Java Client Documentation](https://glistermelon.github.io/mysingingmonsters-client/java/client/v0.1.4/)
 * [Server API Documentation](https://glistermelon.github.io/mysingingmonsters-client/server-api-docs/)
 
 ## Installation
@@ -49,7 +49,7 @@ Add the Maven dependency:
 <dependency>
     <groupId>com.glisterbyte</groupId>
     <artifactId>mysingingmonsters-client</artifactId>
-    <version>0.1.3</version>
+    <version>0.1.4</version>
 </dependency>
 ```
 
