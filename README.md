@@ -161,4 +161,205 @@ Additionally, some endpoints that can be called concurrently do not provide enou
 
 ### Examples
 
-I will add these soon
+#### Small Complete Example
+
+```java
+public class Main {
+
+    static void main() throws ClientException, InterruptedException {
+
+        Client client = new Client();
+        client.connectWithEmail("myemail@mail.com", "mypassword");
+
+        for (Island island : client.getIslands()) {
+            for (Monster monster : island.getMonsters()) {
+                System.out.println(monster);
+            }
+        }
+
+        Monster monster = client.getIslands().getFirst().getMonsters().getFirst();
+        System.out.println(monster.getName() + " est un " + monster.getSpecies().getName(Language.FRENCH));
+
+        /*
+            If you don't disconnect the client like this,
+            it will keep running forever (until you terminate the program)!
+        */
+        client.disconnect();
+
+    }
+
+}
+```
+
+#### Read basic monster properties
+
+These are not all the available functions. See [the documentation](#documentation) for all of them.
+
+```java
+Monster monster = ...;
+System.out.println(monster.getName()); // "Jimbo"
+System.out.println(monster.getSpecies().getName()); // "Quibble"
+System.out.println(monster.getHappiness()); // PERCENT_50 (MonsterHappiness)
+System.out.println(monster.getSpecies().getLikes().getFirst()); // StructureType(name='Castanevine')
+System.out.println(monster.getVolume()); // 1.0
+System.out.println(monster.isInHotel()); // false
+System.out.println(monster.getCollectionCurrencyType()); // COINS
+System.out.println(monster.isMuted()); // false
+System.out.println(monster.getPosition()); // Position[x=23, y=19]
+System.out.println(monster.isFlipped()); // false
+System.out.println(monster.getSpecies().getBedsRequired()); // 2
+System.out.println(monster.getSpecies().getElements().getFirst()); // Element(Air)
+```
+
+#### Read basic structure properties
+
+These are not all the available functions. See [the documentation](#documentation) for all of them.
+
+```java
+Structure structure = ...;
+System.out.println(structure.getName()); // Flappy Flag
+System.out.println(structure.getPosition()); // Position[x=10, y=2]
+System.out.println(structure.getScale()); // 0.92341235
+System.out.println(structure.getSize()); // Size[x=1, y=1]
+System.out.println(structure.isMuted()); // false
+System.out.println(structure.isUpgrading()); // false
+System.out.println(structure.isInWarehouse()); // false
+```
+
+#### Read basic island properties
+
+These are not all the available functions. See [the documentation](#documentation) for all of them.
+
+```java
+Island island = client.getIslands().getFirst();
+System.out.println(island.getIslandType()); // COLD_ISLAND
+System.out.println(island.getMonsters().size()); // 6
+System.out.println(island.getStructures().size()); // 4
+System.out.println(island.getScore()); // 0 :(
+System.out.println(island.getTimeWarp()); // 1.0
+```
+
+#### Modify a monster
+
+These are not all the available functions. See [the documentation](#documentation) for all of them.
+
+```java
+Monster monster = ...;
+
+// Feed to level 4
+monster.feedToLevel(4);
+
+// Feed to level 5
+for (int i = 0; i < 4; i++) {
+    monster.feed();
+}
+
+// Feed to level 6
+monster.feedToNextLevel();
+
+monster.move(new Position(10, 10));
+
+monster.flip();
+monster.setFlipped(false);
+
+monster.mute();
+monster.unmute();
+monster.setMuted(false);
+
+monster.setVolume(1.0);
+
+System.out.println("Collected " + monster.collect());
+
+// Goodbye!
+monster.sell();
+```
+
+#### Wublin functionality
+
+These are not all the available functions. See [the documentation](#documentation) for all of them.
+
+```java
+EggBoxMonster wublin = ...;
+
+if (wublin.isActivated()) {
+    if (wublin.isReadyToCollect()) {
+        wublin.collect();
+    }
+    else {
+        System.out.println(wublin.getNextCollectionTime());
+    }
+}
+else if (wublin.isReadyToActivate()) {
+    wublin.activate();
+}
+else {
+    System.out.println(wublin.getFillTimer());
+    wublin.sellEggs();
+    System.out.println(wublin.needsEgg(client.getMonsterCatalog().noggin()));
+}
+```
+
+#### Bake cupcakes
+
+```java
+Bakery bakery = ...;
+bakery.bake(client.getBakingCatalog().cupcakes());
+bakery.waitUntilDone();
+int food = bakery.collect();
+System.out.println("Collected " + food + " treats!");
+```
+
+#### Breed monsters
+
+```java
+Island plantIsland = client.getIsland(IslandType.PLANT_ISLAND);
+MonsterCatalog monsters = client.getMonsterCatalog();
+Monster entbrat = plantIsland.getMonsterOfSpecies(monsters.entbrat());
+Monster rareEntbrat = plantIsland.getMonsterOfSpecies(monsters.rareEntbrat());
+
+BreedingStructure breeder = plantIsland.getBreedingStructures().getFirst();
+breeder.breed(entbrat, rareEntbrat);
+System.out.println(breeder.getRemainingTime());
+
+// It's going to take a while!
+client.disconnect();
+breeder.waitUntilDone();
+client.reconnect();
+
+Nursery nursery = breeder.collectEgg();
+System.out.println(nursery.getRemainingTime());
+client.disconnect();
+nursery.waitUntilDone();
+client.reconnect();
+
+// Don't mix up 'sellEgg', which sells the egg, with 'sell', which attempts to sell the nursery.
+nursery.sellEgg();
+```
+
+#### Buy and place a noggin
+
+```java
+Island plantIsland = client.getIsland(IslandType.PLANT_ISLAND);
+// You can also get the nursery first and then call nursery.buyEgg
+Nursery nursery = plantIsland.buyMonsterEgg(client.getMonsterCatalog().noggin());
+nursery.waitUntilDone();
+Monster monster = nursery.hatchEgg(new MonsterPlacement(new Position(2, 3), false));
+```
+
+#### Collect from a mine
+
+```java
+Mine mine = client.getIsland(IslandType.PLANT_ISLAND).getMine();
+mine.collect();
+```
+
+#### Visit another user
+
+```java
+VisitData visitData = client.visitUser(client.getFriends().getFirst());
+for (UnownedIsland island : visitData.getIslands()) {
+    for (UnownedMonster monster : island.getMonsters()) {
+        System.out.println(monster);
+    }
+}
+```
