@@ -42,6 +42,41 @@ I personally have not used the client on my own account.
 
 ## Installation
 
+Releases are [published to the Maven central repository](https://central.sonatype.com/artifact/com.glisterbyte/mysingingmonsters-client).
+
+### Maven
+
+Add the Maven dependency:
+```
+<dependency>
+    <groupId>com.glisterbyte</groupId>
+    <artifactId>mysingingmonsters-client</artifactId>
+    <version>0.1.3</version>
+</dependency>
+```
+
+Note the version number here may not be up to date. You can find the latest release [here](https://central.sonatype.com/artifact/com.glisterbyte/mysingingmonsters-client).
+
+### Logging
+
+If you haven't set up a logging backend, you'll see something like:
+```
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+```
+
+I highly recommend setting one up because it provides a lot of information about what the client is actually doing, especially if something goes wrong.
+
+With Maven, for example, you could use Logback by adding a dependency like this:
+```
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+    <version>1.5.18</version>
+</dependency>
+```
+
 ## Usage
 
 Refer to the examples below (you may need to scroll down) on how to do most of the things the library supports. You can also read the documentation.
